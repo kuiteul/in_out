@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('in_out', function(Blueprint $table) {
+            $table->uuid('in_out_id')->primary();
+            $table->date('date_in');
+            $table->date('date_out');
+            $table->time('hour_in');
+            $table->time('hour_out');
+            $table->foreignUuid('employee_id')
+                    ->constrained()
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->foreignUuid('user_id')
+                    ->constrained()
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        //
+    }
+};
