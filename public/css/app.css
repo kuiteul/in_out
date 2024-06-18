@@ -1,0 +1,229 @@
+body {
+ 
+    font-family: Candara, Arial, Helvetica, sans-serif;
+    background-image: url("/images/fond.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    background-color: white;
+    height: auto;
+    position: absolute;
+    top: 0%;
+}
+
+.cursor {
+    cursor: pointer;
+}
+.cursor:hover {
+    background-color: #4EBCD7;
+    color: white;
+}
+.row {
+    margin: 0% !important;
+    padding: 0% !important;
+}
+
+/* CSS des login */
+.title, .nav-link {
+    color: #102845 !important;
+}
+
+.title-header {
+    margin-top: 5%;
+}
+
+.title-connect {
+    margin-top: 18%;
+}
+
+.nav-link {
+    padding: 0% !important;
+}
+
+.title-login {
+    border-color: #102845;
+    margin-top: 7%;
+    font-size: 26px;
+}
+
+#enterprise-name {
+    padding-left: 2%;
+    font-size: 18px;
+}
+
+.login-form {
+    background-color: white;
+    box-shadow: -1px 0px 15px 5px black;
+}
+
+.form-input-login {
+    margin-top: 5%;
+}
+
+.text-white {
+    background-color: #102845;
+}
+
+.span-login {
+    border: none !important;
+}
+
+.input-login {
+    border-color: #102845 !important;
+    border: 1px inset;
+
+}
+
+a {
+    color: #102845;
+    text-decoration: none;
+}
+
+.search-button {
+    background-color: #102845;
+    color: white;
+}
+
+.search-button:hover {
+    color: white !important;
+    background-color: #4EBCD7;
+}
+.forgot-pass:hover {
+    border-color: #102845 !important;
+    border-bottom: 3px solid !important;
+    
+}
+
+a:hover {
+    color: #102845;
+}
+
+.btn-login {
+    color: white;
+    background-color: #102845;
+    border-radius: 5px;
+    border: none !important;
+    margin-top: 7%;
+    font-size: 20px;
+}
+
+.btn-login:hover {
+    background-color: #4EBCD7 !important;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0% !important;
+    padding-top: 0%;
+}
+
+li a {
+    display: inline-block;
+    color: #102845;
+    padding: 3%;
+    width: 100%;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+li a:hover, li a:focus{
+    background-color: #4EBCD7;
+    color: white;
+}
+
+.panel-bar {
+    border-radius: 10px 10px 0px 0px;
+    padding-left: 2.7%;
+    font-size: 20px;
+}
+
+.menu-column {
+    border-radius: 10px;
+    background-color: white;
+    padding: 0%;
+    margin-top: 10%;
+    height: 500px !important;
+    
+}
+
+.menu-column, header, main {
+    box-shadow: 0px 0px 30px  #102845;
+}
+
+.sub-header {
+    height: 45px;
+    background-color: #102845;
+    color: white;
+}
+
+main {
+    background-color: white;
+    margin-top: 10% !important;
+    border-radius: 10px;
+    padding-bottom: 3%;
+    height: auto;
+    margin-bottom: 5%;
+}
+
+
+
+.login-block {
+    margin-top: 5%;
+}
+
+.main-bar {
+    background-color: #102845;
+    height: 37px;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+}
+
+.main-bar p {
+    margin-left: 2%;
+}
+
+main a {
+    color: white !important;
+}
+
+main section:hover {
+    background-color: #4EBCD7 !important;
+}
+
+.ticket {
+    background-color: #102845;
+    color: white;
+    margin: 2%;
+
+}
+
+main h2 {
+    margin-top: 4%;
+}
+
+.block-ticket {
+    margin-top: 8% !important;
+}
+
+.form-block {
+    margin-top: 10% !important;
+    background-color: white;
+}
+
+.text-area {
+    border-radius: 0px 0px 5px 5px !important;
+    border-color: #102845 !important;
+    
+}
+
+.label {
+    border-radius: 5px 5px 0px 0px !important;
+    padding-left: 3%;
+}
+
+table {
+    color: #102845 !important;
+}
+

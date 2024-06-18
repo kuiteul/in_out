@@ -15,6 +15,10 @@ return new class extends Migration
             $table->uuid('service_id')->primary();
             $table->string('service_name');
             $table->string('service_email')->nullable();
+            $table->foreignUuid('user_id')
+                    ->constrained()
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('l_name');
             $table->string('email')->unique();
             $table->integer('telephone')->unique();
+            $table->foreignUuid('user_id')
+                    ->constrained()
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
             $table->foreignUuid('service_id')
                     ->constrained()
                     ->onDelete('cascade')
