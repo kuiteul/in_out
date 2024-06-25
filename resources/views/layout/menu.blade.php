@@ -9,33 +9,35 @@
                 <span id="enterprise-name">Panel</span>
             </div>
             <nav class="col-12 menu nav-link">
-                <ul class="fw-bold col-12">
-                    @if ($user_log->role == "Admin" || $user_log->role == "User")
-                        <li><a href="/presence">&Eacute;tat</a></li>
-                    @endif
-                    @if ($user_log->role == "Admin" || $user_log->role == "Auditor")
-                        <li><a href="/status">&Eacute;tat du jour</a></li>
-                    @endif
-                    @if ($user_log->role == "Admin" || $user_log->role == "User")
-                        <li><a href="/entry">Arrivée</a></li>
-                    @endif
-                    @if ($user_log->role == "Admin" || $user_log->role == "Auditor")
-                        <li><a href="/late">Retardataire</a></li>
-                    @endif
-                    @if ($user_log->role == "Admin")
-                        <li><a href="/users">Gestion des Utilisateurs</a></li>
-                    @endif
-                    @if ($user_log->role == "Admin")
-                        <li><a href="/employee">Gestion des employés</a></li>
-                    @endif
-                    @if ($user_log->role == "Admin")
-                        <li><a href="/service">Gestion des services</a></li>
-                    @endif
-                    @if ($user_log->role == "Admin" || $user_log->role == "Auditor")
-                        <li><a href="/search">Rechercher</a></li>
-                    @endif
-                    
-                </ul>
+                @foreach ($user_log as $item)
+                    <ul class="fw-bold col-12">
+                        @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "User")
+                            <li><a href="/presence">&Eacute;tat</a></li>
+                        @endif
+                        @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "Supervisor")
+                            <li><a href="/status">&Eacute;tat du jour</a></li>
+                        @endif
+                        @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "User")
+                            <li><a href="/entry">Arrivée</a></li>
+                        @endif
+                        @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "Supervisor")
+                            <li><a href="/late">Retardataire</a></li>
+                        @endif
+                        @if ($item->role == "SuperAdmin")
+                            <li><a href="/users">Gestion des Utilisateurs</a></li>
+                        @endif
+                        @if ($item->role == "Admin" || $item->role == "SuperAdmin")
+                            <li><a href="/employee">Gestion des employés</a></li>
+                        @endif
+                        @if ($item->role == "Admin" || $item->role == "SuperAdmin")
+                            <li><a href="/service">Gestion des services</a></li>
+                        @endif
+                        @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "Supervisor")
+                            <li><a href="/search">Rechercher</a></li>
+                        @endif
+                        
+                    </ul>
+                @endforeach
             </nav>
         </div>
     </div>

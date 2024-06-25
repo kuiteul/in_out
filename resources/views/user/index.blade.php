@@ -31,9 +31,9 @@
                 
             @else
                 <tr>
-                <td> {{ $item->name }} </td>
+                <td> {{ $item->f_name }} {{ $item->l_name }}</td>
                 <td> {{ $item->email }} </td>
-                <td> {{ $item->user_type }}</td>
+                <td> {{ $item->role }}</td>
                 <td><a href="users/{{$item->id}}" class="text-primary"> Gérer </a></td>
                 </tr>
             @endif

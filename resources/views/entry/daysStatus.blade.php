@@ -41,12 +41,12 @@
             </thead>
             <tbody>
                 @method('POST')
-            @foreach ($status as $item)
+            @foreach ($presence as $item)
                 <form action="removeEntry" method="post">
                     @csrf
                     @if ($item->hour_entries > "09:00")
                         <tr class="alert alert-danger">
-                            <td> {{ $item->full_name }} </td>
+                            <td> {{ $item->f_name }} {{ $item->l_name}} </td>
                             <td>{{ $item->service_name }}</td>
                             <td> {{ $item->date_entries }}</td>
                             <td> {{ $item->hour_entries }}</td>

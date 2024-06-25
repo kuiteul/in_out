@@ -19,11 +19,31 @@
         <div class="sub-header row col-12">
             <section class="col-4">
                 Welcome, 
+                @foreach ($user_log as $item)
+                    {{ $item->f_name }} {{ $item->l_name }}
+                
             </section>
 
             <section class="col-4 offset-4 text-end">
-                Connecté en tant que " " 
+                Connecté en tant que
+                @switch($item->role)
+                    @case("Admin")
+                        "Administrateur"
+                        @break
+                    @case("User")
+                        "Utilisateur"
+                        @break
+                    @case("SuperAdmin")
+                        "Super administrateur"
+                        @break
+                    @case("Supervisor")
+                        "Superviseur"
+                        @break
+                    @default
+                        
+                @endswitch
             </section>
+            @endforeach
         </div>
 
     </header>

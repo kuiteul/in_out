@@ -19,12 +19,12 @@
                     <span id="enterprise-name">AMT CAMEROUN SA</span>
                 </div>
                 
-                <form action="/login" class="col-12 login-form " method="POST">
-                    @csrf
+                <form action="{{url('login')}}" class="col-12 login-form " method="POST">
                     <div class="col-12">
                         <div class="form text-center col-12 title title-login ">
                             Page de connexion
                         </div>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="form-input-login col-8 offset-2 ">
                             <div class="input-group mb-3">
                                 <span class="input-group-text span-login col-3 text-white text-center" id="inputGroup-sizing-default">Login </span>

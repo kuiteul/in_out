@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Repositoyr;
+    namespace App\Repository;
 
     use App\Models\EmployeeModel;
 
@@ -44,7 +44,7 @@ class EmployeeRepository
      */
     public function getPaginate(int $number)
     {
-        return $this->_employee->paginate($number);
+        return $this->_employee->join('services','services.service_id', 'employees.service_id')->paginate($number);
     }
 
     /**
@@ -52,7 +52,8 @@ class EmployeeRepository
      */
     public function show(string $employee_id)
     {
-        return $this->_employee->where('employee_id', $employee_id)->get();
+        return $this->_employee->join('services', 'services.service_id', 'employees.service_id')
+                                ->where('employee_id', $employee_id)->get();
     }
 
     /**
@@ -60,12 +61,13 @@ class EmployeeRepository
      */
     public function update(Array $array, string $employee_id)
     {
+        
         return $this->_employee->where('employee_id', $employee_id)->update([
             "f_name" => $array['first-name'],
             "l_name" => $array['last-name'],
             "email" => $array['email'],
             "telephone" => $array['telephone'],
-            "service_id" => $array['service_id']
+            "service_id" => $array['service-id']
         ]);
     }
 

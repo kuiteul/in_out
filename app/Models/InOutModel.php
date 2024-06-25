@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class EmployeeModel extends Model 
-{
+class InOutModel extends Model {
 
-    protected $table = "employees";
-    protected $primaryKey = 'employee_id';
+    protected $table = "in_out";
+    protected $primaryKey = 'in_out_id';
     public $incrementing = false;
     protected $keyType = 'string';
     

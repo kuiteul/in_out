@@ -22,23 +22,25 @@
             @endisset
             <div class="col-10 offset-1">
                 @foreach ($service as $item)
-                <form action="/service/{{ $item->service_id }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                
-                    <div class="fs-4 col-10 offset-1 text-center"> 
-                        <label for="nom" class="label col-5 text-end">Nom complet :  </label> 
-                        <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->service_name }}">
-                    </div><br><br>
-                    <div class="col-12 row">
-                        <div class="fs-4 col-4 offset-1"> 
-                            <a href="/service/{{ $item->service_id }}/edit"><button class="btn btn-primary input-login col-12 cursor fs-6">&Eacute;diter</button></a>
-                        </div>
-                        <div class="fs-4 col-4 offset-1"> 
-                            <button type="submit" class="btn btn-danger col-12">Supprimer</button>
+                    <div class="col-12">
+                        @csrf
+                        @method('DELETE')
+                    
+                        <div class="fs-4 col-10 offset-1 text-center"> 
+                            <label for="nom" class="label col-5 text-end">Nom complet :  </label> 
+                            <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->service_name }}">
+                        </div><br><br>
+                        <div class="col-12 row">
+                            <div class="fs-4 col-4 offset-1">
+                                <a href="/service/{{ $item->service_id }}/edit"><button class="btn btn-primary input-login col-12 cursor fs-6">&Eacute;diter</button></a>
+                            </div>
+                            <form class="fs-4 col-4 offset-1" action="/service/{{ $item->service_id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger col-12">Supprimer</button>
+                            </form>
                         </div>
                     </div>
-                </form>
                 @endforeach
             </div>
     </main>

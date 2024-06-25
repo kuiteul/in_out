@@ -19,17 +19,17 @@
     <table class="border table">
         <thead>
             <tr>
-                <th>Nom du service</th>
+                <th>Service ID </th>
+                <th>Serice name</th>
                 <th>Date de création</th>
-                <th colspan="2" class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
           @foreach ($service as $item)
-                <tr>
+                <tr onclick="document.location.href='/service/{{ $item->service_id }}'" class="cursor">
+                    <td> {{ $item->service_id }}</td>
                     <td> {{ $item->service_name }} </td>
-                    <td> {{ $item->created_at }} </td>
-                    <td><a href="service/{{$item->service_id}}" class="text-primary"> Gérer </a></td>
+                    <td> {{ $item->created_at }}</td>
                 </tr>
           @endforeach
         </tbody>

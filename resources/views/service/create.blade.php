@@ -29,9 +29,9 @@
                     <div class="input-group mb-3 col-12 ">
                         <span class="input-group-text col-4 text-white text-center input-login" id="">Nom du service</span>
                         <input type="text" class="form-control input-login" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                            placeholder="Entrer le nom du service" name="service_name">
+                            placeholder="Entrer le nom du service" name="service-name">
                     </div>
-                    @error('service_name')
+                    @error('service-name')
                         <div class="input-group col-12 mb-3 alert alert-danger"> {{ $message }} </div>
                     @enderror
                    

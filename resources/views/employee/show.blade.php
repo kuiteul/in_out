@@ -22,16 +22,20 @@
             @endisset
             <div class="col-10 offset-1">
                 @foreach ($employee as $item)
-                <form action="/users/{{ $item->employee_id }}" method="GET">
+                <div>
                     @csrf
                 
                     <div class="fs-4 col-10 offset-1 text-center"> 
                         <label for="nom" class="label col-5 text-end">Nom complet :  </label> 
-                        <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->full_name }}">
+                        <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->f_name }} {{ $item->l_name }}">
                     </div>
                     <div class="fs-4 col-10 offset-1 text-center"> 
                         <label for="nom" class="label col-5 text-end">Email :  </label> 
-                        <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->employee_email }}">
+                        <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->email }}">
+                    </div>
+                    <div class="fs-4 col-10 offset-1 text-center"> 
+                        <label for="nom" class="label col-5 text-end">Telephone :  </label> 
+                        <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->telephone }}">
                     </div>
                     <div class="fs-4 col-10 offset-1 text-center"> 
                         <label for="nom" class="label col-5 text-end">Service affecté :  </label> 
@@ -41,24 +45,16 @@
                         <label for="nom" class="label col-5 text-end">Date de création :  </label> 
                         <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->created_at }}">
                     </div>
-                    <div class="fs-4 col-10 offset-1 text-center"> 
-                        <label for="nom" class="label col-5 text-end">Actif :   </label> 
-                        <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->Active }}">
-                    </div>
-                    <div class="fs-4 col-10 offset-1 text-center"> 
-                        <label for="nom" class="label col-5 text-end">Créé par :  </label> 
-                        <input type="text" disabled class="col-5 offset-1 border-0 title" value="{{ $item->name }}">
-                    </div>
                     <hr >
                     <div class="col-12 row">
-                        <div class="fs-4 col-4"> 
-                            <a href="/users/{{ $item->id }}/edit"><button class="btn input-login col-12 cursor fs-6">&Eacute;diter</button></a>
+                        <div class="fs-4 col-4 offset-2"> 
+                            <a href="/employee/{{ $item->employee_id }}/edit"><button class="btn input-login col-12 cursor fs-6">&Eacute;diter</button></a>
                         </div>
                         <div class="fs-4 col-4"> 
                             <button type="submit" class="btn btn-danger col-12">Supprimer</button>
                         </div>
                     </div>
-                </form>
+                </div>
                 @endforeach
             </div>
     </main>

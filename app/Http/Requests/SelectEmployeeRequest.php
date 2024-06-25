@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceRequest extends FormRequest
+class SelectEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class ServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "service-name" => "required|min:3|max:50",
+            'service-id' => "required|string|min:36|max:36"
         ];
     }
 }

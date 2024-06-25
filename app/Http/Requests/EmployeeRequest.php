@@ -22,7 +22,6 @@ class EmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "user-id" => "required|min:36|max:36",
             "first-name" => "required|min:3|max:15",
             "last-name" => "required|min:3|max:15",
             "email" => "email|required",

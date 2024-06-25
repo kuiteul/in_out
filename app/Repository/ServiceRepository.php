@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Repository;
+namespace App\Repository;
 
-    use App\Models\ServiceModel;
+use App\Models\ServiceModel;
 
 class ServiceRepository
 {
@@ -19,8 +19,6 @@ class ServiceRepository
     public function save(ServiceModel $service, Array $input)
     {
         $service->service_name = $input['service-name'];
-        $service->service_email = $input['service-email'];
-        $service->user_id = $input['user-id'];
         $service->save();
     }
 
@@ -31,7 +29,7 @@ class ServiceRepository
     {
         $service = new $this->_service;
 
-        $service->save($service, $array);
+        $this->save($service, $array);
     }
 
     /**
@@ -39,7 +37,7 @@ class ServiceRepository
      */
     public function getPaginate(int $number)
     {
-        return $this->_service->paginate($number);
+        return $this->_service->orderby('service_name')->cursorPaginate(20);
     }
 
     /**

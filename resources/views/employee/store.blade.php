@@ -7,7 +7,6 @@
 @section('content')
 
 <main class="col-7 offset-1">
-    @if(isset($result) && $result == "success")
         <div class="card col-8 offset-2">
             <div class="card-header col-12">
             Création Réussie !
@@ -18,7 +17,6 @@
                 <a href="/employee" class="btn btn-success col-12">Retour</a>
             </div>
         </div>
-    @endisset
 
     @if(isset($result) && $result == "failed")
         <div class="card col-8 offset-2">
@@ -39,5 +37,6 @@
       
 @endsection
 
-@extends('layout/menu')
+
 @extends('layout/header')
+@extends('layout/menu')

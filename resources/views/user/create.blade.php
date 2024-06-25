@@ -21,28 +21,27 @@
         -->
         <form action="/users" class="col-12" method="POST">
             @csrf <!-- Clé de contrôle du formulaire -->
-            @isset($error)
-                <div class="col-12 alert alert-danger text-center">{{ $error }}</div>
-            @endisset
+
+            <input type="test" name="user-id" value="{{ Auth::user()->user_id }}" hidden >
             <div class="col-6 offset-3">
                     <!-- Zone de texte du prénom -->
                     <div class="input-group mb-3 col-12 ">
-                        <span class="input-group-text col-4 text-white text-center input-login" id="">Nom complet</span>
-                        <input type="text" class="form-control input-login" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                            placeholder="Entrer le nom complet" name="full_name">
+                        <select name="employee-id" id="employee-id" class="form-control">
+                            <option value="" selected disabled>Sélectionner l'utilisateur</option>
+                            @foreach ($employee as $item)
+                                @if ($item->employee_id == Auth::user()->employee_id)
+                                    <option disabled value="{{ $item->employee_id }}">{{ $item->f_name }} {{ $item->l_name }} <i class="bi bi-check-lg"></i></option>
+                                    
+                                @else
+                                    <option value="{{ $item->employee_id }}">{{ $item->f_name }} {{ $item->l_name }}</option>
+                                @endif
+                                    
+                            @endforeach
+                        </select>
+                        @error('employee-id')
+                            <div class="input-group col-12 mb-3 alert alert-danger"> {{ $message }} </div>
+                        @enderror
                     </div>
-                    @error('name')
-                        <div class="input-group col-12 mb-3 alert alert-danger"> {{ $message }} </div>
-                    @enderror
-                    <!-- Zone de texte de l'adresse email -->
-                    <div class="input-group mb-3 col-12 ">
-                        <span class="input-group-text col-4 text-white text-center input-login" id="">Email </span>
-                        <input type="email" class="form-control input-login" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                            placeholder="Entrer une adresse email" name="email">
-                    </div>
-                    @error('email')
-                        <div class="input-group col-12 mb-3 alert alert-danger"> {{ $message }} </div>
-                    @enderror
                     <div class="input-group mb-3 col-12 ">
                         <span class="input-group-text text-white col-4 input-login">Mot de passe</span>
                         <input type="password" class="form-control input-login" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
@@ -52,14 +51,15 @@
                         <div class="input-group col-12 mb-3 alert alert-danger"> {{ $message }} </div>
                     @enderror
                     <div class="input-group mb-3 col-12 ">
-                       <select name="user_type" id="user_type" class="form-control">
+                       <select name="role" id="role" class="form-control">
                             <option value="" selected disabled>Sélectionner le rôle</option>
                             <option value="User">utilisateur</option>
                             <option value="Admin">Administrateur</option>
-                            <option value="Supervisor">Superviseur</option>
-                            @if ($user_log->user_type === "SuperAdmin")
+                            @if ( Auth::user()->role == "SuperAdmin")
                                 <option value="SuperAdmin">Super Administrateur</option>
                             @endif
+                            <option value="Supervisor">Superviseur</option>
+                            
                             
                        </select>
                     </div>

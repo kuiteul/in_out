@@ -12,9 +12,9 @@
             Création Réussie !
             </div>
                 <div class="card-body">
-                <h5 class="card-title text-success">Mise à jour de l'employé</h5>
-                <p class="card-text">L'employé a été mis à jour avec succès.</p>
-                <a href="/employee" class="btn btn-success col-12">Retour</a>
+                <h5 class="card-title text-success">Création d'utilisateur'</h5>
+                <p class="card-text">L'utilisateur a été créé avec succès.</p>
+                <a href="/service" class="btn btn-success col-12">Retour</a>
             </div>
         </div>
 
