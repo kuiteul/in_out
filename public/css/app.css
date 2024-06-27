@@ -128,10 +128,11 @@ li a {
     font-size: 24px;
 }
 
-li a:hover, li a:focus{
+li a:hover, li a:focus, li a:active{
     background-color: #4EBCD7;
     color: white;
 }
+
 
 .panel-bar {
     border-radius: 10px 10px 0px 0px;

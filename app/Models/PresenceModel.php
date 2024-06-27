@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class ServiceModel extends Model {
+class PresenceModel extends Model {
 
     protected $table = "presence";
     protected $primaryKey = 'presence_id';

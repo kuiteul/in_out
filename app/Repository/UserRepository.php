@@ -3,17 +3,20 @@
 namespace App\Repository;
 
 use App\Models\UserModel;
+use App\Models\EmployeeModel;
 
 class UserRepository
 {
     protected $_user;
+    protected $_employee;
 
     /**
      * Build constructor
      */
-    public function __construct(UserModel $user)
+    public function __construct(UserModel $user, EmployeeModel $employee)
     {
         $this->_user = $user;
+        $this->_employee = $employee;
     }
 
     /**
@@ -21,6 +24,7 @@ class UserRepository
      */
     public function save(UserModel $user, Array $input)
     {
+        
         $user->email = $this->getEmail($input['employee-id']);
         $user->password = bcrypt($input['password']);
         $user->employee_id = $input['employee-id'];
@@ -34,14 +38,13 @@ class UserRepository
     public function getEmail(string $employee_id)
     {
         $email = "";
-        $data = $this->_user->join('employees', 'employees.employee_id', 'users.employee_id')
-                                ->where('employees.employee_id', $employee_id)
-                                ->get();
+        $data = $this->_employee->select('email')->where('employee_id', $employee_id)->get();
         foreach($data as $item)
         {
-            $email = $item['email'];
+            $email = $item->email;
         }
         return $email;
+        
     }
 
     /**

@@ -33,3 +33,7 @@ Route::get('/presence', [InOutController::class, 'index'])->middleware('auth', '
 Route::get('/entry', [InOutController::class, 'entry'])->middleware('auth', 'verified');
 Route::post('/entry', [InOutController::class, 'selectEmployee'])->middleware('auth', 'verified');
 Route::post('/validateEntry', [InOutController::class, 'validate'])->middleware('auth', 'verified');
+Route::put('/removeEntry/{employee_id}', [InOutController::class, 'remove'])->middleware('auth', 'verified');
+Route::get('/status', [InOutController::class, 'daysStatus'])->middleware('auth', 'verified');
+Route::get('/late', [InOutController::class, 'late'])->middleware('auth', 'verified');
+Route::post('searchPresence', [InOutController::class, 'searchPresence'])->middleware('auth', 'verified');

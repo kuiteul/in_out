@@ -9,14 +9,16 @@
     <div class="col-12 main-bar">
         <p class="fw-bold fs-5">Connecting the world</p>
     </div>
-    <h2 class="text-center text-uppercase fw-bold fs-1 title col-12">Liste des présents</h2>
+    <h2 class="text-center text-uppercase fw-bold fs-1 title col-12">Liste des présents du 
+         <?= now()->format('d-m-Y') ?>
+    </h2>
     @isset($success)
         <div class="alert alert-success col-12 text-center">{{ $success }}</div>
     @endisset
     <form action="search" method="POST" class="col-12 row ">
         @csrf
         <div class="col-4">
-            <select name="service_id" id="service_id" class="form-control col-12 input-login">
+            <select name="service-id" id="service-id" class="form-control col-12 input-login">
                 <option value="" disabled selected>Rechercher par service</option>
                 @foreach ($service as $item)
                     <option value="{{ $item->service_id }}">{{ $item->service_name }} </option>
@@ -33,7 +35,7 @@
                 <tr>
                     <th>Nom complet</th>
                     <th>Service</th>
-                    <th>Date</th>
+                    <th>Date d'entrée</th>
                     <th>Heure d'entrée</th>
                     <th>Heure sortie</th>
                     <th>Action</th>
@@ -44,46 +46,32 @@
             @foreach ($presence as $item)
                 <form action="removeEntry" method="post">
                     @csrf
-                    @if ($item->hour_entries > "09:00")
-                        <tr class="alert alert-danger">
-                            <td> {{ $item->f_name }} {{ $item->l_name}} </td>
-                            <td>{{ $item->service_name }}</td>
-                            <td> {{ $item->date_entries }}</td>
-                            <td> {{ $item->hour_entries }}</td>
-                            @if (empty($item->hour_out))
-                                <td>Pas encore sorti(e)</td>
-                            @else 
-                                <td>{{ $item->hour_out }} </td>
-                            @endif
-                            
-                            @if ($user_log->user_type == "Supervisor")
-                                <td><a href="mailto:{{ $item->employee_email}}" class="text-primary">Envoyer un mail</a></td>
-                                <input type="text" value="{{ $item->employee_id }}" name="employee_id" hidden>
-                                <input type="text" value="{{ Auth::user()->id }}" name="user_id" hidden >
-                            @endif
-                        
-                        </tr>
-                    @else 
-                        <tr>
-                            <td> {{ $item->full_name }} </td>
-                            <td>{{ $item->service_name }}</td>
-                            <td> {{ $item->date_entries }}</td>
-                            <td> {{ $item->hour_entries }}</td>
-                            @if (empty($item->hour_out))
-                                <td>Pas encore sorti(e)</td>
-                            @else 
-                                <td>{{ $item->hour_out }} </td>
-                            @endif
-                            
-                            @if ($user_log->user_type == "Supervisor")
-                                <td>Aucune action</td>
-                                <input type="text" value="{{ $item->employee_id }}" name="employee_id" hidden>
-                                <input type="text" value="{{ Auth::user()->id }}" name="user_id" hidden >
-                            @endif
-                        
-                        </tr>
-                    @endif
-                    
+                    <tr>
+                        <td> {{ $item->f_name }} {{ $item->l_name}} </td>
+                        <td>{{ $item->service_name }}</td>
+                        <td> {{ $item->date_in }}</td>
+                        <td> {{ $item->hour_in }}</td>
+                        <td>{{ $item->hour_out }}</td>
+                        <td><a href="mailto:{{$item->email}}?Subject=RETARD OBSERV&Eacute;&amp;body=Bonjour 
+                            {{ $item->f_name}} {{$item->l_name}},
+                            pouvez-vous me donner la raison de votre retard ?" class="text-primary" alt="">Envoyer email</a></td>
+                        <!-- We hide this code to all people who are not a user
+                            We do it to put a fair treatement.
+                        -->
+                        @if (Auth::user()->role == "User")
+                            <td>
+                                <input type="time" name="hour-out" class="form-control" id="hour-out">
+                            </td>                          
+                        @endif
+
+                        @if (Auth::user()->role == "User")
+                            <td><button type="submit">Sortie</button></a></td>
+                            <input type="text" value="{{ $item->in_out_id}}" name="in-out-id" hidden id="in-out-id">
+                            <input type="text" value="{{ $item->employee_id }}" name="employee-id" hidden>
+                            <input type="text" value="{{ Auth::user()->id }}" name="user-id" hidden >
+                        @endif
+
+                    </tr>
                 </form>
             @endforeach
             </tbody>

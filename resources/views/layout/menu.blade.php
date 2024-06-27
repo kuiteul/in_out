@@ -11,13 +11,13 @@
             <nav class="col-12 menu nav-link">
                 @foreach ($user_log as $item)
                     <ul class="fw-bold col-12">
-                        @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "User")
+                        @if ($item->role == "User")
                             <li><a href="/presence">&Eacute;tat</a></li>
                         @endif
                         @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "Supervisor")
                             <li><a href="/status">&Eacute;tat du jour</a></li>
                         @endif
-                        @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "User")
+                        @if ($item->role == "User")
                             <li><a href="/entry">Arrivée</a></li>
                         @endif
                         @if ($item->role == "Admin" || $item->role == "SuperAdmin" || $item->role == "Supervisor")

@@ -5,7 +5,7 @@
 
 @section('content')
     
-    <main class="col-10 col-sm-7 offset-1">
+    <main class="col-8" style="margin-left: 1.5%">
         <div class="col-12 main-bar">
             <p class="fw-bold fs-5">Connecting the world</p>
         </div>

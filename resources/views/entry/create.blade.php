@@ -22,7 +22,7 @@
                 <div class="col-12 alert alert-danger text-center">{{ $error }}</div>
             @endisset
             <div class="col-6 offset-3">
-                @if (Auth::user()->role == "User")
+                @if (Auth::user()->role == "Admin" || Auth::user()->role == "Supervisor" || Auth::user()->role == "SuperAdmin")
 
                     <h2 class="text-center text-warning text-upper">Your privilege don't allow you to make this action</h2>
                 @else

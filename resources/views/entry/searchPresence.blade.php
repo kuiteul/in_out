@@ -13,10 +13,10 @@
     @isset($success)
         <div class="alert alert-success col-12 text-center">{{ $success }}</div>
     @endisset
-    <form action="search" method="POST" class="col-12 row ">
+    <form action="/searchPresence" method="POST" class="col-12 row ">
         @csrf
         <div class="col-4">
-            <select name="service_id" id="service_id" class="form-control col-12 input-login">
+            <select name="service-id" id="service_id" class="form-control col-12 input-login">
                 <option value="" disabled selected>Rechercher par service</option>
                 @foreach ($service as $item)
                     <option value="{{ $item->service_id }}">{{ $item->service_name }} </option>
@@ -33,8 +33,7 @@
                 <tr>
                     <th>Nom complet</th>
                     <th>Service</th>
-                    <th>Date d'entrée</th>
-                    <th>Heure d'entrée</th>
+                    <th>Date sortie</th>
                     <th>Heure sortie</th>
                     <th>Action</th>
                 </tr>
@@ -42,34 +41,29 @@
             <tbody>
                 @method('POST')
             @foreach ($presence as $item)
-                <form action="removeEntry" method="post">
+                <form action="removeEntry/{{ $item->employee_id }}" method="post">
                     @csrf
                     @foreach ($service as $item_service)
             
                         @if ($item->service_id == $item_service->service_id)
                             <tr>
-                                <td> {{ $item->full_name }} </td>
+                                <td> {{ $item->f_name }} {{ $item->l_name}} </td>
                                 <td>{{ $item->service_name }}</td>
-                                <td> {{ $item->date_entries }}</td>
-                                <td> {{ $item->hour_entries }}</td>
-                                <!-- We hide this code to all people who are not a user
-                                    We do it to put a fair treatement.
-                                -->
-                                @if ($user_log->user_type == "User")
-                                    <td>
-                                        <input type="time" name="hour_out" class="form-control" id="hour_out">
-                                    </td>                          
-                                @endif
-
-                                @if ($user_log->user_type == "User")
-                                    <td><button type="submit">Sortie</button></a></td>
-                                    <input type="text" value="{{ $item->entries_id}}" name="entries_id" hidden id="entries_id">
-                                    <input type="text" value="{{ $item->employee_id }}" name="employee_id" hidden>
-                                    <input type="text" value="{{ Auth::user()->id }}" name="user_id" hidden >
-                                @endif
+                                <td> <input type="date" name="date-out" id="date-out" class="form-control"></td>
+                            <td> <input type="time" name="hour-out" id="hour-out" class="form-control"></td>
+                            @if (empty($item->hour_out))
+                                <td>Pas encore sorti(e)</td>
+                            @endif
+                            
+                            @if (Auth::user()->role == "Supervisor")
+                                <td><a href="mailto:{{ $item->employee_email}}" class="text-primary">Envoyer un mail</a></td>
+                                <input type="text" value="{{ $item->employee_id }}" name="employee-id" hidden>
+                                <input type="text" value="{{ Auth::user()->user_id }}" name="user-id" hidden >
+                            @else 
+                                <td><button type="submit" class="btn btn-danger">Sortie</button></td>
+                            @endif
 
                             </tr>
-                            @break
                         @endif
                     @endforeach
                     

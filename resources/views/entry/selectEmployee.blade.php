@@ -24,23 +24,27 @@
             </thead>
             <tbody>
                 @method('POST')
-            
-                <form action="{{ url('/validateEntry')}}" method="post">
-                    @csrf
-                   <!-- Otherwise We display it -->
-                   @foreach ($employee as $item)
-                        <tr>
-                            <td> {{ $item->f_name }} {{ $item->l_name }}</td>
-                            <td><input type="date" class="form-control" name="date-in" id="date_entry"></td>
-                            <td>
-                                <input type="time" class="form-control" name="hour-in" id="hour_entry">
-                            </td>
-                            <td><button class="btn btn-primary" type="submit">Arrivé</button></a></td>
-                            <input type="text" value="{{ $item->employee_id }}" name="employee-id" hidden>                           
-                        </tr>
-                    @endforeach
-                    <input type="text" value="{{ Auth::user()->user_id }}" name="user-id" hidden >
-                </form>
+                @foreach ($employee as $item)
+                    <form action="{{ url('/validateEntry')}}" method="post">
+                        @csrf
+                    <!-- Otherwise We display it -->
+                    
+                        <input type="text" value="{{ $item->employee_id }}" name="employee-id" hidden> 
+                            <tr>
+                                <td> {{ $item->f_name }} {{ $item->l_name }}</td>
+                                <td><input type="date" class="form-control" name="date-in" id="date_entry"></td>
+                                <td>
+                                    <input type="time" class="form-control" name="hour-in" id="hour_entry">
+                                </td>
+                                @if (in_array($item->employee_id, $in_presence))
+                                    <td><button disabled class="btn btn-primary" type="submit">Déjà Arrivé</button></a></td>  
+                                @else
+                                    <td><button class="btn btn-primary" type="submit">Arrivé</button></a></td>  
+                                @endif                                                   
+                            </tr>                    
+                        <input type="text" value="{{ Auth::user()->user_id }}" name="user-id" hidden >
+                    </form>
+                @endforeach
             </tbody>
         </table>
 
